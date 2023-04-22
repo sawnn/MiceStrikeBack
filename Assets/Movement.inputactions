@@ -9,7 +9,7 @@
                     "name": "Movement",
                     "type": "Value",
                     "id": "2d1a1367-07c1-4c3c-b422-87e3d942353d",
-                    "expectedControlType": "Vector2",
+                    "expectedControlType": "Vector3",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
@@ -37,9 +37,9 @@
                     "isPartOfComposite": false
                 },
                 {
-                    "name": "2D Vector",
+                    "name": "3D Vector",
                     "id": "1921cd03-7cd4-4806-bcd0-2c90dc3a4e52",
-                    "path": "2DVector",
+                    "path": "3DVector",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -84,6 +84,28 @@
                     "name": "Right",
                     "id": "0f29cbe7-8271-4f3b-b6c2-e835542b1f5e",
                     "path": "<Keyboard>/d",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Movement",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "Forward",
+                    "id": "2bfcd43d-c9aa-45b5-a990-fb46c29acb66",
+                    "path": "",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Movement",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "Backward",
+                    "id": "bb4b7497-9a0b-4af6-884e-0a5e6f44f444",
+                    "path": "",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
