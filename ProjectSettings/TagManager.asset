@@ -43,3 +43,6 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: mouses
+    uniqueID: 1589825553
+    locked: 0
