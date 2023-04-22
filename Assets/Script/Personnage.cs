@@ -68,6 +68,14 @@ public class Personnage : MonoBehaviour
     public void CatchAction(InputAction.CallbackContext context)
     {
         Debug.Log("Catch");
+        if (sourisInRadius.Count > 0)
+        {
+            Destroy(sourisInRadius[0]);
+            sourisInRadius.RemoveAt(0);
+        }
+        else {
+            Debug.Log("No mouse in radius");
+        }
     }
 
     public Vector2 PointerMouse()
@@ -94,7 +102,17 @@ public class Personnage : MonoBehaviour
     }
 
     private void OnTriggerEnter(Collider other) {
-        
+        if (other.gameObject.tag == "Souris")
+        {
+            sourisInRadius.Add(other.gameObject);
+        }
+    }
+
+    private void OnTriggerExit(Collider other) {
+        if (other.gameObject.tag == "Souris")
+        {
+            sourisInRadius.Remove(other.gameObject);
+        }
     }
 
 
