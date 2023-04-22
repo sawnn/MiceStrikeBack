@@ -13,29 +13,61 @@ public class Personnage : MonoBehaviour
     public float currentSpeed = 0;
 
 
-    public InputActionReference moveAction, pointerAction;
+    public InputActionReference moveAction, pointerAction, catchAction;
 
-    public Vector2 move;
+    public Vector3 move;
     public Vector2 pointer;
     public float maxSpeed = 500, acceleration = 500, deceleration = 500;
 
-    Vector2 oldMove;
 
-    Rigidbody2D rb;
+    public List<GameObject> sourisInRadius = new List<GameObject>();
+
+    Vector3 oldMove;
+
+        private bool facingRight = true;
+
+    Rigidbody rb;
+
+    float yRotation = 0;
     void Start()
     {
-        rb = GetComponent<Rigidbody2D>();
+        rb = GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
     void Update()
     {   
 
-        move = moveAction.action.ReadValue<Vector2>();
-        //move = new Vector3(value.x, 0, value.y);
-        pointer = PointerMouse();
+        move = moveAction.action.ReadValue<Vector3>();
+        
+
+        if (move.x > 0 && !facingRight)
+        {
+            yRotation = 180;
+            facingRight = true;
+        }
+        else if (move.x < 0 && facingRight)
+        {
+            yRotation = 0;
+            facingRight = false;
+        }
+        transform.rotation = Quaternion.Euler(90, yRotation, 0);
 
     
+    }
+
+
+    private void OnEnable() {
+        catchAction.action.performed += CatchAction;
+    }
+
+    private void OnDisable() {
+        catchAction.action.performed -= CatchAction;
+    }
+
+    public void CatchAction(InputAction.CallbackContext context)
+    {
+        Debug.Log("Catch");
     }
 
     public Vector2 PointerMouse()
@@ -57,6 +89,12 @@ public class Personnage : MonoBehaviour
         }
         currentSpeed = Mathf.Clamp(currentSpeed, 0, maxSpeed);
         rb.velocity = oldMove * currentSpeed;
+        
+        
+    }
+
+    private void OnTriggerEnter(Collider other) {
+        
     }
 
 

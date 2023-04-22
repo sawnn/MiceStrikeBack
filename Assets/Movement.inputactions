@@ -22,6 +22,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
+                },
+                {
+                    "name": "Catch",
+                    "type": "Button",
+                    "id": "b82fb078-a2f6-4e02-8432-f84183f8930b",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -48,28 +57,6 @@
                     "isPartOfComposite": false
                 },
                 {
-                    "name": "Up",
-                    "id": "0e53c967-8639-4f22-95a9-7fc247a7a90d",
-                    "path": "<Keyboard>/w",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Movement",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "Down",
-                    "id": "578ff34f-46af-4c34-b83c-804500ed57ab",
-                    "path": "<Keyboard>/s",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Movement",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
                     "name": "Left",
                     "id": "bd8de2eb-93ad-43df-99b8-d774339af1d3",
                     "path": "<Keyboard>/a",
@@ -94,7 +81,7 @@
                 {
                     "name": "Forward",
                     "id": "2bfcd43d-c9aa-45b5-a990-fb46c29acb66",
-                    "path": "",
+                    "path": "<Keyboard>/w",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -105,13 +92,24 @@
                 {
                     "name": "Backward",
                     "id": "bb4b7497-9a0b-4af6-884e-0a5e6f44f444",
-                    "path": "",
+                    "path": "<Keyboard>/s",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
                     "action": "Movement",
                     "isComposite": false,
                     "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "fb0ff71d-b46f-4c0a-a079-99489f80b135",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Catch",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         }
