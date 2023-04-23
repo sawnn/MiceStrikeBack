@@ -26,6 +26,7 @@ public class Souris : MonoBehaviour
     float speed = 0;
     Vector3 center = new Vector3(0, 0, 0);
     Animator animator;
+    [SerializeField] GameObject surprise;
 
     // Use this for initialization
     void Start ()
@@ -79,9 +80,16 @@ public class Souris : MonoBehaviour
             }
         }
 
+		if (agent.velocity.x > 0)
+		{
+			transform.localScale = new(Mathf.Abs(transform.localScale.x), transform.localScale.y,transform.localScale.z);
+		}
+		else if (agent.velocity.x < 0)
+		{
+			transform.localScale = new(Mathf.Abs(transform.localScale.x)*-1, transform.localScale.y, transform.localScale.z);
+		}
 
-
-    }
+	}
 
     private void OnTriggerEnter(Collider other) 
     {
@@ -93,9 +101,15 @@ public class Souris : MonoBehaviour
             stop = true;
             agent.speed = 0;
             fleePosition = transform.position + (transform.position - other.transform.position).normalized * fleeDistance;
-
-        }
+            StartCoroutine(SurpriseApparition());
+		}
     }
+    private IEnumerator SurpriseApparition()
+    {
+		surprise.SetActive(true);
+        yield return new WaitForSeconds(0.75f);
+		surprise.SetActive(false);
+	}
 
     public bool ReachedDestination()
     {
