@@ -9,6 +9,7 @@ TagManager:
   - Trap
   - Panel
   - Plane
+  - MenuTrap
   layers:
   - Default
   - TransparentFX

@@ -9,7 +9,7 @@ EditorBuildSettings:
     path: Assets/Scenes/MenuPrincipal.unity
     guid: 9c97f1d585227834689dc67458c42c26
   - enabled: 1
-    path: Assets/Scenes/ASoScene2.unity
-    guid: 381290ccfc8b63843b823e6ba2ad1daf
+    path: Assets/Scenes/DayOne.unity
+    guid: eaab8ee6f490bf449ad0e8cd13fa0269
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: 47f43d2d94725db4db3d69fb453fe1ca, type: 2}

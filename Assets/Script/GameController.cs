@@ -2,17 +2,24 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using System;
+using UnityEngine.SceneManagement;
+using UnityEditor;
 
 public class GameController : MonoSingleton<GameController>
 {
-    public GameObject sourisPrefab;
     public int nombreSouris = 10;
 
     public bool hunt = false;
 
     public float timeBeforeStart = 60f;
+    float timer = 0f;
 
-    public GameObject MenuTrap;
+    public List<Souris> sourisList;
+
+    
+
+
 
 
     void Start()
@@ -20,16 +27,22 @@ public class GameController : MonoSingleton<GameController>
 
     }
 
+    void Awake() {
+        DontDestroyOnLoad(gameObject);
+                Debug.Log("Awake");
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
     void Update()
     {
-        if (hunt == false)
+        if (hunt == false  && sourisList.Count > 0)
         {
-            timeBeforeStart -= Time.deltaTime;
-            if (timeBeforeStart <= 0)
+            timer += Time.deltaTime;
+            if (timer >= timeBeforeStart)
             {
                 hunt = true;
                 TrapSelectionMenu.Instance.DesactiveManager();
-                MenuTrap.SetActive(false);
+                GameObject.FindGameObjectWithTag("MenuTrap").SetActive(false);
                 SpawnSouris();
             }
         }
@@ -38,11 +51,15 @@ public class GameController : MonoSingleton<GameController>
 
     public void SpawnSouris()
     {
-        for (int i = 0; i < nombreSouris; i++)
+        foreach (Souris souris in sourisList)
+        {
+            souris.gameObject.SetActive(true);
+        }
+       /* for (int i = 0; i < nombreSouris; i++)
         {
             Vector3 randomPosition = RandomNavMeshLocation();
             GameObject souris = Instantiate(sourisPrefab, randomPosition, Quaternion.Euler(90, 0, 0));
-        }
+        }*/
     }
 
     private Vector3 RandomNavMeshLocation()
@@ -55,7 +72,7 @@ public class GameController : MonoSingleton<GameController>
 
     for (int i = 0; i < maxIterations; i++)
     {
-        int randomIndex = Random.Range(0, triangulation.indices.Length - 2); 
+        int randomIndex = UnityEngine.Random.Range(0, triangulation.indices.Length - 2); 
         int index1 = triangulation.indices[randomIndex];
         int index2 = triangulation.indices[randomIndex + 1];
         int index3 = triangulation.indices[randomIndex + 2];
@@ -75,4 +92,51 @@ public class GameController : MonoSingleton<GameController>
     }
             return randomPoint;
         }
+
+
+        public void EndGame(bool isWin) 
+        {
+            sourisList.Clear();
+            timer = 0;
+            if (isWin)
+            {
+                Debug.Log("Gagné !");
+                SceneController.Instance.LoadScene("Win");
+            }
+            else
+            {
+                Debug.Log("Perdu !");
+            }
+        }
+
+
+    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        Debug.Log("OnSceneLoaded: " + scene.name);
+        Debug.Log(mode);
+
+        switch (scene.name)
+        {
+            case "DayOne":
+                timeBeforeStart = 0f;
+                break;
+            case "DayTwo":
+                timeBeforeStart = 60f;
+                break;
+            case "DayThree":
+                timeBeforeStart = 60f;
+                break;
+            case "DayFour":
+                timeBeforeStart = 60f;
+                break;
+            default:
+                break;
+        }
+        foreach (Souris go in Resources.FindObjectsOfTypeAll<Souris>())
+        {
+            if (go.gameObject.scene.name != null)
+                sourisList.Add(go);
+        }
+        nombreSouris = sourisList.Count;
+    }
 }

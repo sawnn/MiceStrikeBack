@@ -16,6 +16,10 @@ public class ScoreController : MonoSingleton<ScoreController>
 
 
 
+    private void Awake() {
+        DontDestroyOnLoad(gameObject);
+    }
+
     private void Start() {
         maxMouseCount = GameController.Instance.nombreSouris;
     }
@@ -35,6 +39,7 @@ public class ScoreController : MonoSingleton<ScoreController>
             //Debug.Log("Gagné !");
             //Debug.Log("Score : " + GetScore());
             SoundManager.Instance.MuteMice();
+            
         }
     }
 

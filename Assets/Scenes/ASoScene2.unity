@@ -2751,23 +2751,15 @@ PrefabInstance:
       propertyPath: m_Name
       value: MenuTrap (1)
       objectReference: {fileID: 0}
-    - target: {fileID: 341091100147180900, guid: d1ac54298b6b8404e9696c7234a8e313, type: 3}
-      propertyPath: numTrapsToGenerate
-      value: 10
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d1ac54298b6b8404e9696c7234a8e313, type: 3}
---- !u!1001 &1807627278480083483
+--- !u!1001 &3796850225701233924
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 3381051422580722818, guid: 1049c058778ae8742895519c78daeeb6, type: 3}
-      propertyPath: m_Camera
-      value: 
-      objectReference: {fileID: 963194227}
     - target: {fileID: 3697392362766788561, guid: 1049c058778ae8742895519c78daeeb6, type: 3}
       propertyPath: m_Name
       value: Souris

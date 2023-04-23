@@ -27,11 +27,11 @@ RectTransform:
   m_GameObject: {fileID: 3569521045585551764}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.013333331, y: 0.013333332, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1249082007594144727}
-  m_RootOrder: 2
+  m_Father: {fileID: 4621806954063586759}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -164,7 +164,7 @@ SpriteRenderer:
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
-  m_MaskInteraction: 0
+  m_MaskInteraction: 1
   m_SpriteSortPoint: 0
 --- !u!195 &3697392362766788567
 NavMeshAgent:
@@ -177,7 +177,7 @@ NavMeshAgent:
   m_AgentTypeID: 0
   m_Radius: 0.100000024
   m_Speed: 100
-  m_Acceleration: 50
+  m_Acceleration: 100
   avoidancePriority: 50
   m_AngularSpeed: 120
   m_StoppingDistance: 0
@@ -200,8 +200,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f844707e6b402941a40687f3d71d3d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  wanderRadius: 200
-  wanderTimer: 5
+  wanderRadius: 1000
+  wanderTimer: 20
   fleeDistance: 200
   fleeTime: 8
   timer: 0
@@ -274,7 +274,8 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.013333332, y: 0.013333332, z: 0}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 335744065637165408}
   m_Father: {fileID: 1249082007594144727}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
@@ -374,7 +375,6 @@ Transform:
   m_Children:
   - {fileID: 7223332952109178649}
   - {fileID: 4621806954063586759}
-  - {fileID: 335744065637165408}
   m_Father: {fileID: 3697392362766788565}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
