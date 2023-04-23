@@ -49,3 +49,6 @@ TagManager:
   - name: mouses
     uniqueID: 1589825553
     locked: 0
+  - name: UI
+    uniqueID: 1769370917
+    locked: 0
