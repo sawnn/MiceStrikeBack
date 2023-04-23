@@ -27,11 +27,11 @@ RectTransform:
   m_GameObject: {fileID: 3569521045585551764}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 0}
+  m_LocalScale: {x: 0.013333331, y: 0.013333332, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 4621806954063586759}
-  m_RootOrder: 0
+  m_Father: {fileID: 1249082007594144727}
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -210,7 +210,6 @@ MonoBehaviour:
   stop: 0
   stopTimer: 0.5
   flash: {fileID: 6766883840086152756}
-  surprise: {fileID: 7839148838603168576}
 --- !u!135 &3697392362766788570
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -275,8 +274,7 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.013333332, y: 0.013333332, z: 0}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 335744065637165408}
+  m_Children: []
   m_Father: {fileID: 1249082007594144727}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
@@ -376,6 +374,7 @@ Transform:
   m_Children:
   - {fileID: 7223332952109178649}
   - {fileID: 4621806954063586759}
+  - {fileID: 335744065637165408}
   m_Father: {fileID: 3697392362766788565}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -586,8 +585,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 1769370917
-  m_SortingLayer: 2
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: -1739586855, guid: 3d49227376670e64c8982da3f17d14e2, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -610,7 +609,7 @@ Animator:
   m_GameObject: {fileID: 7839148838603168576}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 9b78abc121b739347a313175241ad14e, type: 2}
+  m_Controller: {fileID: 9100000, guid: 4a76c59989a4d5941beea99513d7f709, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
