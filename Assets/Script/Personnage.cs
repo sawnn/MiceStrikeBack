@@ -24,11 +24,12 @@ public class Personnage : MonoBehaviour
 
     Vector3 oldMove;
 
-        private bool facingRight = true;
+    private bool facingRight = true;
 
     Rigidbody rb;
 
     float xRotation = 90;
+
     void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -74,6 +75,7 @@ public class Personnage : MonoBehaviour
         {
             foreach (GameObject souris in sourisInRadius)
             {
+                SoundManager.Instance.PlaySound("catchSound");
                 Destroy(souris);
                 ScoreController.Instance.MouseCaught();
             }
