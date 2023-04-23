@@ -75,8 +75,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1589825553
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_Sprite: {fileID: -1610372182, guid: 6b200e2f74a758443ac181d192ad4228, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -132,7 +132,6 @@ MonoBehaviour:
   newPos: {x: 0, y: 0, z: 0}
   stop: 0
   stopTimer: 0.5
-  mesh: {fileID: 0}
 --- !u!135 &3697392362766788570
 SphereCollider:
   m_ObjectHideFlags: 0
