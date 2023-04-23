@@ -175,7 +175,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85f0438b508e6da4ba889956aca499c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  numTrapsToGenerate: 2
+  numTrapsToGenerate: 10
   trapPrefab: {fileID: 1474972981408086990, guid: c5182b55086a67c4184d9711caf1045a, type: 3}
   gridLayout: {fileID: 341091100147180899}
   FlashPrefab: {fileID: 1792385565288267352, guid: 30261b161f3610e4c87fe6d82e4c8ba8, type: 3}
