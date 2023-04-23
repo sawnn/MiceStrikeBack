@@ -22,14 +22,11 @@ public class Souris : MonoBehaviour
     public float stopTimer = 1f;
 
     float speed = 0;
-
-    public MeshFilter mesh;
     Vector3 center = new Vector3(0, 0, 0);  
 
     // Use this for initialization
     void Start ()
     {
-        Vector3 center = mesh.mesh.bounds.center;
         agent = GetComponent<NavMeshAgent>();
         speed = agent.speed;
         timer = 0;

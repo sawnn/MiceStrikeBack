@@ -28,7 +28,7 @@ public class Personnage : MonoBehaviour
 
     Rigidbody rb;
 
-    float yRotation = 0;
+    float xRotation = 90;
     void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -37,21 +37,23 @@ public class Personnage : MonoBehaviour
     // Update is called once per frame
     void Update()
     {   
+        Vector3 tmpMove = moveAction.action.ReadValue<Vector3>();
+        move = new Vector3(tmpMove.x, 0, tmpMove.z);
 
-        move = moveAction.action.ReadValue<Vector3>();
+
         
 
         if (move.x > 0 && !facingRight)
         {
-            yRotation = 180;
+            xRotation = 90;
             facingRight = true;
         }
         else if (move.x < 0 && facingRight)
         {
-            yRotation = 0;
+            xRotation = -90;
             facingRight = false;
         }
-        transform.rotation = Quaternion.Euler(90, yRotation, 0);
+        transform.rotation = Quaternion.Euler(xRotation, 90, 90);
 
     
     }
@@ -70,10 +72,15 @@ public class Personnage : MonoBehaviour
         Debug.Log("Catch");
         if (sourisInRadius.Count > 0)
         {
-            Destroy(sourisInRadius[0]);
-            sourisInRadius.RemoveAt(0);
+            foreach (GameObject souris in sourisInRadius)
+            {
+                Destroy(souris);
+                ScoreController.Instance.MouseCaught();
+            }
+            sourisInRadius.Clear();
         }
         else {
+            ScoreController.Instance.CatchFail();
             Debug.Log("No mouse in radius");
         }
     }

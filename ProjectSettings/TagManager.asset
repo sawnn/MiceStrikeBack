@@ -6,6 +6,9 @@ TagManager:
   tags:
   - SourisDetection
   - Souris
+  - Trap
+  - Panel
+  - Plane
   layers:
   - Default
   - TransparentFX
