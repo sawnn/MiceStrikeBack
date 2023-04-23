@@ -479,7 +479,10 @@ MonoBehaviour:
   newPos: {x: 0, y: 0, z: 0}
   stop: 0
   stopTimer: 0.5
+<<<<<<< HEAD
   flash: {fileID: 353994846}
+=======
+>>>>>>> 358f46bcd5026ab7952873ef2c93ab4a79273c1e
 --- !u!135 &3697392362766788570
 SphereCollider:
   m_ObjectHideFlags: 0

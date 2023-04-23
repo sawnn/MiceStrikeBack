@@ -31,14 +31,21 @@ public class ScoreController : MonoSingleton<ScoreController>
 
         if (mouseCount >= maxMouseCount)
         {
-            Debug.Log("Gagné !");
-            Debug.Log("Score : " + GetScore());
+            Debug.Log("Manche terminée !");
+            //Debug.Log("Gagné !");
+            //Debug.Log("Score : " + GetScore());
+            SoundManager.Instance.MuteMice();
         }
     }
 
     public void CatchFail()
     {
         errorCount++;
+        SoundManager.Instance.PlaySound("failSound");
+        if(errorCount >= 3)
+        {
+            Debug.Log("Game Over");
+        }
     }
 
     public int GetScore()

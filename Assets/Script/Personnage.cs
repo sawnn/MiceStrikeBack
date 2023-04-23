@@ -26,11 +26,12 @@ public class Personnage : MonoBehaviour
 
     Vector3 oldMove;
 
-        private bool facingRight = true;
+    private bool facingRight = true;
 
     Rigidbody rb;
 
     float xRotation = 90;
+
     void Start()
     {
         animator = GetComponent<Animator>();
@@ -84,7 +85,11 @@ public class Personnage : MonoBehaviour
         {
             foreach (GameObject souris in sourisInRadius)
             {
+<<<<<<< HEAD
                 Debug.Log("Mouse caught");
+=======
+                SoundManager.Instance.PlaySound("catchSound");
+>>>>>>> 358f46bcd5026ab7952873ef2c93ab4a79273c1e
                 Destroy(souris);
                 ScoreController.Instance.MouseCaught();
             }

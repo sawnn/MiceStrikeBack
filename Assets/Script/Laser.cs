@@ -31,6 +31,7 @@ public class Laser : MonoBehaviour
         {
             if (hit.collider.CompareTag("Souris"))
             {
+                SoundManager.Instance.PlaySound("laserSound");
                 Debug.Log("Hit");
                 StartDetection();
             }
