@@ -28,7 +28,7 @@ public class Souris : MonoBehaviour
     Animator animator;
 
     // Use this for initialization
-    void Start ()
+    void Awake ()
     {
         animator = GetComponent<Animator>();
         agent = GetComponent<NavMeshAgent>();
@@ -106,13 +106,13 @@ public class Souris : MonoBehaviour
     {
         Vector3 randDirection = Random.insideUnitSphere * dist;
 
-        randDirection += center;
+        randDirection += transform.position;
 
         NavMeshHit navHit;
         while (!NavMesh.SamplePosition(randDirection, out navHit, dist, layermask))
         {
             randDirection = Random.insideUnitSphere * dist;
-            randDirection += origin;
+            randDirection += transform.position;
         }
 
         return navHit.position;
