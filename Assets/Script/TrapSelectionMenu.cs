@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.AI;
 
-public class TrapSelectionMenu : MonoBehaviour
+public class TrapSelectionMenu : MonoSingleton<TrapSelectionMenu>
 {
 
     public GameObject selectedTrap; 
@@ -28,6 +28,21 @@ public class TrapSelectionMenu : MonoBehaviour
         
     }
 
+    public void DesactiveManager()
+    {
+        gameObject.SetActive(false);
+    }
+
+    public void ActiveManager()
+    {
+        gameObject.SetActive(true);
+    }
+
+    public void SelectTrap(GameObject trap)
+    {
+        selectedTrap = trap;
+    }
+
     private void OnEnable()
     {
         leftClickAction.action.performed += SelectTrap;
@@ -44,7 +59,7 @@ public class TrapSelectionMenu : MonoBehaviour
     {
         if (selectedTrap)
         {
-            selectedTrap.transform.Rotate(Vector3.up, 90f);
+            selectedTrap.transform.Rotate(Vector3.forward, 45f);
         }
     }
 
@@ -52,17 +67,33 @@ public class TrapSelectionMenu : MonoBehaviour
     {
         Debug.Log("SelectTrap");
         Ray ray;
+        RaycastHit hit;
+
         if (selectedTrap)
         {
-            ray = new Ray(selectedTrap.transform.position, Vector3.down);
+            NavMeshHit hitNav;
+            if (NavMesh.SamplePosition(selectedTrap.transform.position, out hitNav, 100f, NavMesh.AllAreas))
+            {
+                Debug.Log("Navmesh found under selected object");
+                selectedTrap = null;
+            }
         }
         else
         {
             ray = Camera.main.ScreenPointToRay(Mouse.current.position.ReadValue());
+            if (Physics.Raycast(ray, out hit, Mathf.Infinity))
+            {
+                Debug.Log("heree");
+                if (hit.collider.gameObject.tag == "Trap")
+                {
+                        selectedTrap = hit.collider.gameObject;
+                        //selectedTrap.transform.localScale = new Vector3(10f, 10f, 10f);
+                }
+            }
         }
 
-        Debug.DrawRay(ray.origin, ray.direction * 1000, Color.red, 5f);
-        if (Physics.Raycast(ray, out RaycastHit hit,  Mathf.Infinity))
+        //Debug.DrawRay(position, Vector3.down, Color.red, 5f);
+      /*  if (Physics.Raycast(position, Vector3.down, out RaycastHit hit, 100f))
         {
             Debug.Log("heree");
             if (hit.collider.gameObject.tag == "Trap")
@@ -71,7 +102,7 @@ public class TrapSelectionMenu : MonoBehaviour
                 {
                     selectedTrap = hit.collider.gameObject;
                     selectedTrap.transform.SetParent(null);
-                    selectedTrap.transform.localScale = new Vector3(10f, 10f, 10f);
+                    //selectedTrap.transform.localScale = new Vector3(10f, 10f, 10f);
                 }
             }
             Debug.Log("imhereee");
@@ -92,15 +123,10 @@ public class TrapSelectionMenu : MonoBehaviour
                     selectedTrap = null;
                 }
             }*/
-            else
-            {
-                Debug.Log("Position is not on navmesh.");
-            }
+          
 
             
-
-     
-        }
+        
     }
 
 

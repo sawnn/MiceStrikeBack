@@ -8,8 +8,35 @@ public class GameController : MonoSingleton<GameController>
     public GameObject sourisPrefab;
     public int nombreSouris = 10;
 
+    public bool hunt = false;
+
+    public float timeBeforeStart = 60f;
+
+    public GameObject MenuTrap;
+
 
     void Start()
+    {
+
+    }
+
+    void Update()
+    {
+        if (hunt == false)
+        {
+            timeBeforeStart -= Time.deltaTime;
+            if (timeBeforeStart <= 0)
+            {
+                hunt = true;
+                TrapSelectionMenu.Instance.DesactiveManager();
+                MenuTrap.SetActive(false);
+                SpawnSouris();
+            }
+        }
+
+    }
+
+    public void SpawnSouris()
     {
         for (int i = 0; i < nombreSouris; i++)
         {

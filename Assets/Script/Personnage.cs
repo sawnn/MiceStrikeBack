@@ -19,6 +19,8 @@ public class Personnage : MonoBehaviour
     public Vector2 pointer;
     public float maxSpeed = 500, acceleration = 500, deceleration = 500;
 
+    public Animator animator;
+
 
     public List<GameObject> sourisInRadius = new List<GameObject>();
 
@@ -31,6 +33,7 @@ public class Personnage : MonoBehaviour
     float xRotation = 90;
     void Start()
     {
+        animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody>();
     }
 
@@ -54,6 +57,13 @@ public class Personnage : MonoBehaviour
             facingRight = false;
         }
         transform.rotation = Quaternion.Euler(xRotation, 90, 90);
+        if (move.magnitude > 0)
+        {
+            animator.SetBool("isMoving", true);
+        }
+        else {
+            animator.SetBool("isMoving", false);
+        }
 
     
     }
@@ -74,6 +84,7 @@ public class Personnage : MonoBehaviour
         {
             foreach (GameObject souris in sourisInRadius)
             {
+                Debug.Log("Mouse caught");
                 Destroy(souris);
                 ScoreController.Instance.MouseCaught();
             }
@@ -111,7 +122,8 @@ public class Personnage : MonoBehaviour
     private void OnTriggerEnter(Collider other) {
         if (other.gameObject.tag == "Souris")
         {
-            sourisInRadius.Add(other.gameObject);
+            if (!sourisInRadius.Contains(other.gameObject))
+                sourisInRadius.Add(other.gameObject);
         }
     }
 

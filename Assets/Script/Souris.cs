@@ -21,12 +21,16 @@ public class Souris : MonoBehaviour
     public bool stop = false;
     public float stopTimer = 1f;
 
+    public GameObject flash;
+
     float speed = 0;
-    Vector3 center = new Vector3(0, 0, 0);  
+    Vector3 center = new Vector3(0, 0, 0);
+    Animator animator;
 
     // Use this for initialization
     void Start ()
     {
+        animator = GetComponent<Animator>();
         agent = GetComponent<NavMeshAgent>();
         speed = agent.speed;
         timer = 0;
@@ -79,9 +83,11 @@ public class Souris : MonoBehaviour
 
     }
 
-    private void OnTriggerEnter(Collider other) {
+    private void OnTriggerEnter(Collider other) 
+    {
         if (other.CompareTag("Player"))
         {
+            animator.SetTrigger("surprise");
             fleeing = false;
             timer = 0;
             stop = true;
@@ -111,5 +117,33 @@ public class Souris : MonoBehaviour
 
         return navHit.position;
     }
+
+    public void Flash()
+    {
+        flash.SetActive(true);
+        StartCoroutine(Wait(1f));
+    }
+
+    public void Slow()
+    {
+        agent.speed = speed / 2;
+        StartCoroutine(Wait(6f));
+    }
+
+    public void Stun()
+    {
+        agent.isStopped = true;
+        StartCoroutine(Wait(5f));
+    }
+
+    IEnumerator Wait(float x)
+    {
+        yield return new WaitForSeconds(x);
+        flash.SetActive(false);
+        agent.isStopped = false;
+        agent.speed = speed;
+    }
+
+
 }
 

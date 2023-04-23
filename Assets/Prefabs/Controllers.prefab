@@ -80,6 +80,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sourisPrefab: {fileID: 3697392362766788561, guid: 1049c058778ae8742895519c78daeeb6, type: 3}
   nombreSouris: 5
+  gameStarted: 0
+  timeBeforeStart: 60
+  MenuTrap: {fileID: 0}
 --- !u!1 &740412087261258478
 GameObject:
   m_ObjectHideFlags: 0

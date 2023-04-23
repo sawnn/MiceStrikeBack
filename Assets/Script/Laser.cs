@@ -26,8 +26,8 @@ public class Laser : MonoBehaviour
     void Update()
     {
         RaycastHit hit;
-        Debug.DrawRay(transform.position, transform.forward * range, Color.red);
-        if (Physics.Raycast(transform.position, transform.forward, out hit, Mathf.Infinity))
+        Debug.DrawRay(transform.position, transform.up * range, Color.red);
+        if (Physics.Raycast(transform.position, transform.up, out hit, Mathf.Infinity))
         {
             if (hit.collider.CompareTag("Souris"))
             {
@@ -55,7 +55,7 @@ public class Laser : MonoBehaviour
         else
         {
             lineRenderer.SetPosition(0, transform.position);
-            lineRenderer.SetPosition(1, transform.position + transform.forward * range);
+            lineRenderer.SetPosition(1, transform.position + transform.up * range);
 
             
         }
@@ -92,4 +92,7 @@ public class Laser : MonoBehaviour
         detectTimeLeft = detectDuration;
         StartCoroutine(UpdateLaserColor());
     }
+
+
+    
 }
