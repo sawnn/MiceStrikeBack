@@ -482,9 +482,9 @@ MonoBehaviour:
   catchAction: {fileID: 2286649811090693003, guid: 2fbfafdc879adee4e9b111a0a7f6204f, type: 3}
   move: {x: 0, y: 0, z: 0}
   pointer: {x: 0, y: 0}
-  maxSpeed: 50
-  acceleration: 50
-  deceleration: 50
+  maxSpeed: 100
+  acceleration: 100
+  deceleration: 100
   animator: {fileID: 0}
   sourisInRadius: []
 --- !u!54 &6623257921445534298
