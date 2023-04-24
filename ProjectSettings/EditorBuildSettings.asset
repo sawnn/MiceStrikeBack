@@ -14,5 +14,11 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/DayTwo.unity
     guid: 04c05ecce2731f444af01f6abef9f10b
+  - enabled: 1
+    path: Assets/Scenes/DayThree.unity
+    guid: 74283c29ce7ba954789acc5b5b914a24
+  - enabled: 1
+    path: Assets/Scenes/DayFour.unity
+    guid: dfc7c54b3e89e8c41ab16e25e7fe1e61
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: 47f43d2d94725db4db3d69fb453fe1ca, type: 2}
