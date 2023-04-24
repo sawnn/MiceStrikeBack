@@ -13,9 +13,21 @@ public class TrapSelectionMenu : MonoSingleton<TrapSelectionMenu>
     private TMPro.TMP_Text timerText;
     private void Start()
     {
-        GameObject[] temp = GameObject.FindGameObjectsWithTag("Timer");
-        timerText = temp[0].GetComponent<TMPro.TMP_Text>();
     }
+
+    public void Init()
+	{
+		GameObject[] temp = GameObject.FindGameObjectsWithTag("Timer");
+        if (temp.Length > 0)
+        {
+            timerText = temp[0].GetComponent<TMPro.TMP_Text>();
+            Debug.LogWarning(temp[0].name);
+        }
+        else
+        {
+            Debug.LogWarning("no");
+        }
+	}
 
     // Update is called once per frame
     void Update()
@@ -44,7 +56,7 @@ public class TrapSelectionMenu : MonoSingleton<TrapSelectionMenu>
 
     public void SelectTrap(GameObject trap)
     {
-        selectedTrap = trap;
+       selectedTrap = trap;
     }
 
     private void OnEnable()

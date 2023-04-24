@@ -26,14 +26,7 @@ public class GameController : MonoSingleton<GameController>
 
     bool isChallenge = false;
 
-
-
     private TMPro.TMP_Text miceCounterText;
-    private void Start()
-    {
-        GameObject[] temp = GameObject.FindGameObjectsWithTag("MiceCounter");
-        miceCounterText = temp[0].GetComponent<TMPro.TMP_Text>();
-    }
 
     void Awake() {
         DontDestroyOnLoad(gameObject);
@@ -47,7 +40,6 @@ public class GameController : MonoSingleton<GameController>
         {
             gameOn = true;
             timer += Time.deltaTime;
-            TrapSelectionMenu.Instance.DisplayTime(timeBeforeStart - timer);
             if (timer >= timeBeforeStart)
             {
                 hunt = true;
@@ -57,9 +49,11 @@ public class GameController : MonoSingleton<GameController>
                 }
                 TrapSelectionMenu.Instance.DesactiveManager();
                 GameObject.FindGameObjectWithTag("MenuTrap").SetActive(false);
-                SpawnSouris();
-            }
-        }
+				GameObject.FindGameObjectWithTag("MenuCatch")?.GetComponent<ShowTriesTimer>().OpenMenu();
+				SpawnSouris();
+			}
+			TrapSelectionMenu.Instance.DisplayTime(timeBeforeStart - timer);
+		}
         else {
             gameOn = false;
         }
@@ -97,7 +91,8 @@ public class GameController : MonoSingleton<GameController>
     public void SkipTime()
     {
         timer = timeBeforeStart;
-    }
+		GameObject.FindGameObjectWithTag("MenuCatch")?.GetComponent<ShowTriesTimer>().OpenMenu();
+	}
 
     public void SpawnSourisRandom()
     {
@@ -193,9 +188,11 @@ public class GameController : MonoSingleton<GameController>
     {
         Debug.Log("OnSceneLoaded: " + scene.name);
         Debug.Log(mode);
+		GameObject[] temp = GameObject.FindGameObjectsWithTag("MiceCounter");
+		if(temp.Length>0) miceCounterText = temp[0].GetComponent<TMPro.TMP_Text>();
+        TrapSelectionMenu.Instance.Init();
 
-
-        if (scene.name == "MenuPrincipal")
+		if (scene.name == "MenuPrincipal")
         {
             ScoreController.Instance.ReinitiateScore();
         }
@@ -229,8 +226,8 @@ public class GameController : MonoSingleton<GameController>
                     sourisList.Add(go);
             }
             ScoreController.Instance.UpdateMaxMouseCount(sourisList.Count);
-            ChangeNbSouris(sourisList.Count);
-            isChallenge = false;
+			ChangeNbSouris(sourisList.Count);
+			isChallenge = false;
         }
    
     }
