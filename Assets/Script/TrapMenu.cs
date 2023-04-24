@@ -7,7 +7,7 @@ public class TrapMenu : MonoBehaviour
 {
     public int numTrapsToGenerate;
     public GameObject trapPrefab;
-    public GridLayoutGroup gridLayout;
+    public Transform contentTraps;
 
     private List<GameObject> traps;
 
@@ -41,7 +41,7 @@ public class TrapMenu : MonoBehaviour
         {
             for (int i = 0; i < trapInfo.nb; i++)
             {
-                GameObject newTrap = Instantiate(trapPrefab, gridLayout.transform);
+                GameObject newTrap = Instantiate(trapPrefab, contentTraps);
                 newTrap.name = trapInfo.trap.ToString();
                 newTrap.GetComponentInChildren<Image>().sprite = trapInfo.sprite;
                 newTrap.GetComponent<Button>().onClick.AddListener(() => { RemoveTrap(newTrap); });
@@ -54,7 +54,7 @@ public class TrapMenu : MonoBehaviour
     {
         for (int i = 0; i < nbTrap; i++)
         {
-            GameObject newTrap = Instantiate(trapPrefab, gridLayout.transform);
+            GameObject newTrap = Instantiate(trapPrefab, contentTraps);
 
             int random = Random.Range(0, trapInfos.Count);
             Sprite randomSprite = trapInfos[random].sprite;
