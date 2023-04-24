@@ -1353,6 +1353,18 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 963194227}
+    - target: {fileID: 6623257921445534296, guid: 3c106b056d485d541b2defb8bf9b245d, type: 3}
+      propertyPath: maxSpeed
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 6623257921445534296, guid: 3c106b056d485d541b2defb8bf9b245d, type: 3}
+      propertyPath: acceleration
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 6623257921445534296, guid: 3c106b056d485d541b2defb8bf9b245d, type: 3}
+      propertyPath: deceleration
+      value: 100
+      objectReference: {fileID: 0}
     - target: {fileID: 6623257921445534300, guid: 3c106b056d485d541b2defb8bf9b245d, type: 3}
       propertyPath: m_Name
       value: Personnage
