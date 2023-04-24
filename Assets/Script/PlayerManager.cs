@@ -5,8 +5,8 @@ using TMPro;
 
 public class PlayerManager : MonoBehaviour
 {
-    public Leaderboard leaderboard;
     public TMP_InputField playerNameInputField;
+    public TMP_Text textValidation;
     void Start()
     {
         StartCoroutine(SetupRoutine());
@@ -19,12 +19,27 @@ public class PlayerManager : MonoBehaviour
             if(response.success)
             {
                 Debug.Log("Successfully set player name");
+                textValidation.text = "Successfully set player name";
+                textValidation.color = Color.green;
             }
             else
             {
                 Debug.Log("Could not set player name" + response.Error);
+                textValidation.text = "Could not set player name";
+                textValidation.color = Color.red;
             }
+            playerNameInputField.text = "";
         });
+    }
+
+    public void FetchScoreboard()
+    {
+        Leaderboard.Instance.FetchTopHighscores();
+    }
+
+    public void FetchScoreboardChallenge()
+    {
+        Leaderboard.Instance.FetchChallengeTopHighscores();
     }
 
 
@@ -43,7 +58,6 @@ public class PlayerManager : MonoBehaviour
             {
                 Debug.Log("Player was logged in");
                 PlayerPrefs.SetString("PlayerID", response.player_id.ToString());
-                SceneController.Instance.LoadScene("MenuPrincipal");
                 done = true;
             }
             else

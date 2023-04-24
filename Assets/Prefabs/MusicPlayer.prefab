@@ -141,3 +141,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c8b6ecf13016d5448bd224989a5dffe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  MenuMusic: {fileID: 8300000, guid: f5b1c11d8c6192a44a6f0e5e8205417f, type: 3}
+  TrapMusic: {fileID: 8300000, guid: 185e757fa0886734a8395ffb2427cbd4, type: 3}
+  HuntMusic: {fileID: 8300000, guid: a952463cc8c0b23448ec774b5aeeba0b, type: 3}
+  audioSource: {fileID: 8758586496567923200}

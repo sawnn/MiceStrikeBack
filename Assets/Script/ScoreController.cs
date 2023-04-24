@@ -73,11 +73,19 @@ public class ScoreController : MonoSingleton<ScoreController>
         errorCount++;
         totalErrorCount++;
         SoundManager.Instance.PlaySound("failSound");
-        if(errorCount >= 3)
+        if(errorCount >= 5)
         {
             int score = CalculateScore();
             Debug.Log("Score : " + score);
-            Leaderboard.Instance.SubmitScore(score);
+            if (GameController.Instance.isChallenge)
+            {
+                Leaderboard.Instance.SubmitScoreChallenge(score);
+            }
+            else
+            {
+                Leaderboard.Instance.SubmitScore(score);
+            }
+   
             score = 0;
             GameController.Instance.EndGame(false);
             Debug.Log("Game Over");

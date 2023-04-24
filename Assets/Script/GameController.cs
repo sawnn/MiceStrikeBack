@@ -24,7 +24,7 @@ public class GameController : MonoSingleton<GameController>
 
     public bool gameOn = false;
 
-    bool isChallenge = false;
+    public bool isChallenge = false;
 
 
     
@@ -52,12 +52,14 @@ public class GameController : MonoSingleton<GameController>
             if (timer >= timeBeforeStart)
             {
                 hunt = true;
+                MusicManager.Instance.PlayHuntMusic();
                 if (sceneName != "DayOne")
                 {
                     LightController.Instance.LightOff();
                 }
                 TrapSelectionMenu.Instance.DesactiveManager();
                 GameObject.FindGameObjectWithTag("MenuTrap").SetActive(false);
+                SoundManager.Instance.ResumeMice();
                 SpawnSouris();
             }
         }
@@ -70,6 +72,7 @@ public class GameController : MonoSingleton<GameController>
     public void GameOn()
     {
         gameOn = true;
+
     }
 
     public void LaunchRandom()
@@ -198,6 +201,8 @@ public class GameController : MonoSingleton<GameController>
         else if (scene.name == "Challenge")
         {
             isChallenge = true;
+            MusicManager.Instance.PlayTrapMusic();
+
         }
         else
         {
@@ -217,8 +222,10 @@ public class GameController : MonoSingleton<GameController>
                     timeBeforeStart = 120f;
                     break;
                 default:
-                    break;
+                    return;
             }
+            MusicManager.Instance.PlayTrapMusic();
+            SoundManager.Instance.MuteMice();
             foreach (Souris go in Resources.FindObjectsOfTypeAll<Souris>())
             {
                 if (go.gameObject.scene.name != null)

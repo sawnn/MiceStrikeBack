@@ -55,7 +55,9 @@ public class SoundManager : MonoSingleton<SoundManager>
         soundEffectSource.Play();
     }
 
-    public void MuteMice() {  mouseSoundSource.mute = true;  }
+    public void MuteMice() {  
+        mouseSoundSource.mute = true;  
+    }
     public void ResumeMice() {  mouseSoundSource.mute = false;  }
 
 }

@@ -12,6 +12,7 @@ public class SceneController : MonoSingleton<SceneController>
     }
     private void Start()
     {
+        LoadScene("MenuPrincipal");
     }
 
     public void LoadScene(string sceneName)

@@ -15,7 +15,7 @@ public class UIScoreBoard : MonoBehaviour
     }
     private void Start() {
         Debug.Log("StartScoreboard");
-        Leaderboard.Instance.FetchTopHighscores();
+        MusicManager.Instance.PlayMenuMusic();
     }
 
     public void AddLine(string name, string score)
@@ -23,6 +23,14 @@ public class UIScoreBoard : MonoBehaviour
         RectTransform temp = lineScore.Create(name, score).GetComponent<RectTransform>();
         temp.SetParent(rectTransform);
         temp.localScale = Vector3.one;
+    }
+
+    public void Clear()
+    {
+        foreach (Transform child in rectTransform)
+        {
+            Destroy(child.gameObject);
+        }
     }
 
 }
