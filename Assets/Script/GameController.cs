@@ -28,8 +28,6 @@ public class GameController : MonoSingleton<GameController>
 
     private TMPro.TMP_Text miceCounterText;
 
-
-
     void Awake() {
         DontDestroyOnLoad(gameObject);
         Debug.Log("Awake");
@@ -154,9 +152,6 @@ public class GameController : MonoSingleton<GameController>
         }
 
 
-    public GameObject win;
-	public GameObject loose;
-
         public void EndGame(bool isWin) 
         {
             sourisList.Clear();
@@ -177,18 +172,16 @@ public class GameController : MonoSingleton<GameController>
                         SceneController.Instance.LoadScene("DayFour");
                         break;
                     case "DayFour":
-                        Instantiate(win);
+                        SceneController.Instance.LoadScene("MenuPrincipal");
                         break;
-				    case "Challenge":
-					    Instantiate(win);
-					    break;
                     default:
                         break;
                 }
             }
             else
             {
-                Instantiate(loose);
+                SceneController.Instance.LoadScene("MenuPrincipal");
+                Debug.Log("Perdu !");
             }
         }
 
