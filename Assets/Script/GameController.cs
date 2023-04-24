@@ -173,6 +173,7 @@ public class GameController : MonoSingleton<GameController>
                         break;
                     case "DayFour":
                         SceneController.Instance.LoadScene("MenuPrincipal");
+                        Debug.Log("win");
                         break;
                     default:
                         break;
