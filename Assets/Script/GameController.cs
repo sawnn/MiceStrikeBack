@@ -181,6 +181,7 @@ public class GameController : MonoSingleton<GameController>
                         break;
 				    case "Challenge":
 					    Instantiate(win);
+                        Debug.Log("test");
 					    break;
                     default:
                         break;
