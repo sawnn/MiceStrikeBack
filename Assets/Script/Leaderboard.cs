@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using LootLocker.Requests;
 using TMPro;
-using Palmmedia.ReportGenerator.Core;
 
 public class Leaderboard : MonoSingleton<Leaderboard>
 {
@@ -124,7 +123,7 @@ public class Leaderboard : MonoSingleton<Leaderboard>
                         tempPlayerNames = "Unknown";
                     }
                     tempPlayerScores = members[i].score.ToString();
-                    UIScoreBoard.instance.AddLine(tempPlayerNames, tempPlayerScores);
+                    UIScoreBoard.instance.AddLine(tempPlayerNames, tempPlayerScores, false);
 
                 }
                 done = true;
@@ -163,7 +162,7 @@ public class Leaderboard : MonoSingleton<Leaderboard>
                         tempPlayerNames = "Unknown";
                     }
                     tempPlayerScores = members[i].score.ToString();
-                    UIScoreBoard.instance.AddLine(tempPlayerNames, tempPlayerScores);
+                    UIScoreBoard.instance.AddLine(tempPlayerNames, tempPlayerScores, true);
 
                 }
                 done = true;
