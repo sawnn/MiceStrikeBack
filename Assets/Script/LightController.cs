@@ -10,6 +10,8 @@ public class LightController : MonoSingleton<LightController>
 
     public GameObject ChallengeUi;
 
+    public GameObject Panel;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -49,5 +51,11 @@ public class LightController : MonoSingleton<LightController>
     public void QuitChallenge()
     {
         SceneController.Instance.LoadScene("MenuPrincipal");
+    }
+
+    public void RemovePanem()
+    {
+        Panel.SetActive(false);
+        GameController.Instance.GameOn();
     }
 }

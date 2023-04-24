@@ -83,7 +83,6 @@ public class Personnage : MonoBehaviour
         Debug.Log("Catch");
         if (sourisInRadius.Count > 0)
         {
-            animator.Play("human-catch");
             foreach (GameObject souris in sourisInRadius)
             {
                 Debug.Log("Mouse caught");
@@ -98,6 +97,8 @@ public class Personnage : MonoBehaviour
             ScoreController.Instance.CatchFail();
             Debug.Log("No mouse in radius");
         }
+        animator.Play("human-catch");
+
     }
 
     public Vector2 PointerMouse()
