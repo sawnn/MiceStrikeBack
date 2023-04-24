@@ -431,7 +431,7 @@ RectTransform:
   m_Children:
   - {fileID: 767003583}
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -504,7 +504,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1286455055
 GameObject:
@@ -719,6 +719,9 @@ MonoBehaviour:
   timeBeforeStart: 60
   sourisList: []
   gameOn: 0
+  isChallenge: 0
+  win: {fileID: 7252345088439938804, guid: ee06b1edddc993745896329a944851a1, type: 3}
+  loose: {fileID: 727662729347383637, guid: 8b3523f8a9d7ad344a82e09f7a983c0a, type: 3}
 --- !u!4 &2082470528
 Transform:
   m_ObjectHideFlags: 0
