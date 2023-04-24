@@ -184,7 +184,12 @@ public class GameController : MonoSingleton<GameController>
         Debug.Log("OnSceneLoaded: " + scene.name);
         Debug.Log(mode);
 
-        if (scene.name == "Challenge")
+
+        if (scene.name == "MenuPrincipal")
+        {
+            ScoreController.Instance.ReinitiateScore();
+        }
+        else if (scene.name == "Challenge")
         {
             isChallenge = true;
         }

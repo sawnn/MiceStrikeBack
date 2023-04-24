@@ -12,7 +12,6 @@ public class SceneController : MonoSingleton<SceneController>
     }
     private void Start()
     {
-        
     }
 
     public void LoadScene(string sceneName)

@@ -5,9 +5,11 @@ using LootLocker.Requests;
 using TMPro;
 using Palmmedia.ReportGenerator.Core;
 
-public class Leaderboard : MonoBehaviour
+public class Leaderboard : MonoSingleton<Leaderboard>
 {
     int leaderboardID = 13648;
+
+    public int playerScore = 0;
     public TextMeshProUGUI playerNames;
     public TextMeshProUGUI playerScores;
     void Start()
@@ -15,24 +17,45 @@ public class Leaderboard : MonoBehaviour
 
     }
 
+    private void Awake() {
+        DontDestroyOnLoad(gameObject);
+    }
+    public void SubmitScore(int scoreToUpload)
+    {
+        StartCoroutine(SubmitScoreRoutine(scoreToUpload));
+    }
     IEnumerator SubmitScoreRoutine(int scoreToUpload)
     {
         bool done = false;
         string playerID = PlayerPrefs.GetString("PlayerID");
-        LootLockerSDKManager.SubmitScore(playerID, scoreToUpload, leaderboardID.ToString(), (response) =>
-        {
-            if (response.success)
-            {
-                Debug.Log("Successfully uploaded score");
-                done = true;
-            }
-            else
-            {
-                Debug.Log("Failed" + response.Error);
-            }
-        });
 
-        yield return new WaitWhile(() => done == false);
+        if (scoreToUpload > playerScore)
+        {
+            playerScore = scoreToUpload;
+            LootLockerSDKManager.SubmitScore(playerID, scoreToUpload, leaderboardID.ToString(), (response) =>
+            {
+                if (response.success)
+                {
+                    Debug.Log("Successfully uploaded score");
+                    done = true;
+                }
+                else
+                {
+                    Debug.Log("Failed" + response.Error);
+                }
+            });
+
+            yield return new WaitWhile(() => done == false);
+        }
+        else {
+            yield return null;
+        }
+    
+    }
+
+    public void FetchTopHighscores()
+    {
+        StartCoroutine(FetchTopHighscoresRoutine());
     }
 
     public IEnumerator FetchTopHighscoresRoutine()
@@ -44,7 +67,7 @@ public class Leaderboard : MonoBehaviour
             if (response.success)
             {
                 string tempPlayerNames = "";
-                int tempPlayerScores = 0;
+                string tempPlayerScores = "";
 
                 LootLockerLeaderboardMember[] members = response.items;
 
@@ -59,8 +82,9 @@ public class Leaderboard : MonoBehaviour
                     {
                         tempPlayerNames = members[i].player.id.ToString();
                     }
-                    tempPlayerScores = members[i].score;
+                    tempPlayerScores = members[i].score.ToString();
                 }
+                UIScoreBoard.instance.AddLine(tempPlayerNames, tempPlayerScores);
                 done = true;
             }
             else
