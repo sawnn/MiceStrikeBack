@@ -9,4 +9,8 @@ public class ShowTriesTimer : MonoBehaviour
     {
         menu.SetActive(true);
     }
-}
+
+    public void BackToMenu() {
+        SceneController.Instance.LoadScene("MenuPrincipal");
+    }
+  }
