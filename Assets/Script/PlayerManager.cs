@@ -43,6 +43,7 @@ public class PlayerManager : MonoBehaviour
             {
                 Debug.Log("Player was logged in");
                 PlayerPrefs.SetString("PlayerID", response.player_id.ToString());
+                SceneController.Instance.LoadScene("MenuPrincipal");
                 done = true;
             }
             else

@@ -13,6 +13,10 @@ public class UIScoreBoard : MonoBehaviour
     {
         instance = this;
     }
+    private void Start() {
+        Debug.Log("StartScoreboard");
+        Leaderboard.Instance.FetchTopHighscores();
+    }
 
     public void AddLine(string name, string score)
     {
