@@ -770,7 +770,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 0, y: 398}
+  m_AnchoredPosition: {x: 0, y: 338}
   m_SizeDelta: {x: 739.953, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8887204459902075046
@@ -902,7 +902,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 27.785034, y: -586}
+  m_AnchoredPosition: {x: 27.785034, y: -538}
   m_SizeDelta: {x: 2515.6938, y: 217.98499}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4493996887179077484
@@ -933,8 +933,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Last night, I heard noises in the walls... I'm sure the mice are planning
-    their revenge, I should prepare myself quickly!
+  m_text: When I woke up this morning, I discovered that there was no electricity
+    anymore... I'm sure it's the mice that got their revenge ! I have to get ready
+    quickly!
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 5947f40c9cb9b1d4bbd3f9ddb30606af, type: 2}
   m_sharedMaterial: {fileID: -6217746641027962188, guid: 5947f40c9cb9b1d4bbd3f9ddb30606af, type: 2}
