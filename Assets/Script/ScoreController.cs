@@ -25,7 +25,8 @@ public class ScoreController : MonoSingleton<ScoreController>
     }
     private void Update()
     {
-        timeElapsed += Time.deltaTime;
+        if (GameController.Instance.gameOn)
+            timeElapsed += Time.deltaTime;
     }
 
     public void MouseCaught()
@@ -39,6 +40,7 @@ public class ScoreController : MonoSingleton<ScoreController>
             //Debug.Log("Gagné !");
             //Debug.Log("Score : " + GetScore());
             SoundManager.Instance.MuteMice();
+            GameController.Instance.EndGame(true);
             
         }
     }
@@ -49,6 +51,7 @@ public class ScoreController : MonoSingleton<ScoreController>
         SoundManager.Instance.PlaySound("failSound");
         if(errorCount >= 3)
         {
+            GameController.Instance.EndGame(false);
             Debug.Log("Game Over");
         }
     }
