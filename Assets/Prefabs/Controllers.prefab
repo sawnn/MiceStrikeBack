@@ -355,6 +355,7 @@ Transform:
   - {fileID: 740412087061290270}
   - {fileID: 740412087288909258}
   - {fileID: 796375462}
+  - {fileID: 4713039021733526100}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -374,7 +375,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &740412087061290270
 Transform:
   m_ObjectHideFlags: 0
@@ -397,16 +398,17 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 740412087061290264}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 874b8a738196e4549b7e896d9c6244ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sourisPrefab: {fileID: 3697392362766788561, guid: 1049c058778ae8742895519c78daeeb6, type: 3}
-  nombreSouris: 5
+  nombreSouris: 1
   hunt: 0
-  timeBeforeStart: 60
-  MenuTrap: {fileID: 0}
+  timeBeforeStart: 0
+  sourisList:
+  - {fileID: 0}
+  gameOn: 0
 --- !u!1 &740412087261258478
 GameObject:
   m_ObjectHideFlags: 0
@@ -423,7 +425,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &740412087261258479
 Transform:
   m_ObjectHideFlags: 0
@@ -501,3 +503,49 @@ MonoBehaviour:
   selectedTrap: {fileID: 0}
   leftClickAction: {fileID: 622129893000287067, guid: 2fbfafdc879adee4e9b111a0a7f6204f, type: 3}
   rightClickAction: {fileID: 4495352859650950261, guid: 2fbfafdc879adee4e9b111a0a7f6204f, type: 3}
+--- !u!1 &2557394713538412700
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4713039021733526100}
+  - component: {fileID: 3481255311136833143}
+  m_Layer: 0
+  m_Name: LightController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4713039021733526100
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2557394713538412700}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 740412087034140581}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3481255311136833143
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2557394713538412700}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b03fcd093147a7409462c73b8fc294b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  candleCanvas: {fileID: 0}
+  Light: {fileID: 0}

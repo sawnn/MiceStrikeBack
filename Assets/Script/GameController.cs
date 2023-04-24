@@ -17,6 +17,10 @@ public class GameController : MonoSingleton<GameController>
 
     public List<Souris> sourisList;
 
+    string sceneName;
+
+    public bool gameOn = false;
+
     
 
 
@@ -37,14 +41,22 @@ public class GameController : MonoSingleton<GameController>
     {
         if (hunt == false  && sourisList.Count > 0)
         {
+            gameOn = true;
             timer += Time.deltaTime;
             if (timer >= timeBeforeStart)
             {
                 hunt = true;
+                if (sceneName != "DayOne")
+                {
+                    LightController.Instance.LightOff();
+                }
                 TrapSelectionMenu.Instance.DesactiveManager();
                 GameObject.FindGameObjectWithTag("MenuTrap").SetActive(false);
                 SpawnSouris();
             }
+        }
+        else {
+            gameOn = false;
         }
 
     }
@@ -97,14 +109,32 @@ public class GameController : MonoSingleton<GameController>
         public void EndGame(bool isWin) 
         {
             sourisList.Clear();
+            hunt = false;
             timer = 0;
             if (isWin)
             {
                 Debug.Log("Gagné !");
-                SceneController.Instance.LoadScene("Win");
+                switch (sceneName)
+                {
+                    case "DayOne":
+                        SceneController.Instance.LoadScene("DayTwo");
+                        break;
+                    case "DayTwo":
+                        SceneController.Instance.LoadScene("DayThree");
+                        break;
+                    case "DayThree":
+                        SceneController.Instance.LoadScene("DayFour");
+                        break;
+                    case "DayFour":
+                        SceneController.Instance.LoadScene("MenuPrincipal");
+                        break;
+                    default:
+                        break;
+                }
             }
             else
             {
+                SceneController.Instance.LoadScene("MenuPrincipal");
                 Debug.Log("Perdu !");
             }
         }
@@ -114,7 +144,7 @@ public class GameController : MonoSingleton<GameController>
     {
         Debug.Log("OnSceneLoaded: " + scene.name);
         Debug.Log(mode);
-
+        sceneName = scene.name;
         switch (scene.name)
         {
             case "DayOne":

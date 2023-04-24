@@ -23,7 +23,7 @@ public class TrapSelectionMenu : MonoSingleton<TrapSelectionMenu>
         {
           
             Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            selectedTrap.transform.position = new Vector3(mousePos.x, 5, mousePos.z);
+            selectedTrap.transform.position = new Vector3(mousePos.x, 11, mousePos.z);
         }
         
     }
