@@ -210,6 +210,7 @@ MonoBehaviour:
   stop: 0
   stopTimer: 0.5
   flash: {fileID: 6766883840086152756}
+  surprise: {fileID: 7839148838603168576}
 --- !u!135 &3697392362766788570
 SphereCollider:
   m_ObjectHideFlags: 0
