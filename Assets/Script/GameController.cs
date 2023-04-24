@@ -43,7 +43,7 @@ public class GameController : MonoSingleton<GameController>
 
     void Update()
     {
-        if (hunt == false  && sourisList.Count > 0)
+        if (hunt == false  && sourisList.Count > 0 && gameOn == true)
         {
             gameOn = true;
             timer += Time.deltaTime;
@@ -64,6 +64,11 @@ public class GameController : MonoSingleton<GameController>
             gameOn = false;
         }
 
+    }
+
+    public void GameOn()
+    {
+        gameOn = true;
     }
 
     public void LaunchRandom()

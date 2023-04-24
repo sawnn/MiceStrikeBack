@@ -59,7 +59,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_TargetDisplay: 0
 --- !u!114 &578683499448237057
 MonoBehaviour:
@@ -1167,7 +1167,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'Move
 
-    <b>WQSD</b>'
+    <b>WASD</b>'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 5947f40c9cb9b1d4bbd3f9ddb30606af, type: 2}
   m_sharedMaterial: {fileID: -6217746641027962188, guid: 5947f40c9cb9b1d4bbd3f9ddb30606af, type: 2}
