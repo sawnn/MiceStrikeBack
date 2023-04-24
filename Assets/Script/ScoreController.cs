@@ -44,6 +44,7 @@ public class ScoreController : MonoSingleton<ScoreController>
     {
         newMouseCount++;
 
+        GameController.Instance.ChangeTextCounterMice(maxMouseCount-newMouseCount);
 
         if (newMouseCount >= maxMouseCount)
         {

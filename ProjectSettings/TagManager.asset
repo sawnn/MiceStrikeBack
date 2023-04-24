@@ -10,6 +10,8 @@ TagManager:
   - Panel
   - Plane
   - MenuTrap
+  - Timer
+  - MiceCounter
   layers:
   - Default
   - TransparentFX

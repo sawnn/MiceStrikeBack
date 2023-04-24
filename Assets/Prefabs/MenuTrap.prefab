@@ -37,7 +37,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.085, y: 0.57333344}
   m_AnchorMax: {x: 0.93460786, y: 0.7066667}
-  m_AnchoredPosition: {x: 0, y: -0.00000667572}
+  m_AnchoredPosition: {x: 0, y: -0.0000076293945}
   m_SizeDelta: {x: 0, y: -0.00001335144}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &459880558
@@ -918,7 +918,7 @@ GameObject:
   - component: {fileID: 3550638417886944040}
   m_Layer: 5
   m_Name: Text (TMP) (2)
-  m_TagString: Untagged
+  m_TagString: Timer
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

@@ -26,14 +26,13 @@ public class GameController : MonoSingleton<GameController>
 
     bool isChallenge = false;
 
-    
 
 
-
-
-    void Start()
+    private TMPro.TMP_Text miceCounterText;
+    private void Start()
     {
-
+        GameObject[] temp = GameObject.FindGameObjectsWithTag("MiceCounter");
+        miceCounterText = temp[0].GetComponent<TMPro.TMP_Text>();
     }
 
     void Awake() {
@@ -48,6 +47,7 @@ public class GameController : MonoSingleton<GameController>
         {
             gameOn = true;
             timer += Time.deltaTime;
+            TrapSelectionMenu.Instance.DisplayTime(timeBeforeStart - timer);
             if (timer >= timeBeforeStart)
             {
                 hunt = true;
@@ -76,6 +76,11 @@ public class GameController : MonoSingleton<GameController>
     public void ChangeNbSouris(int nbSouris)
     {
         nombreSouris = nbSouris;
+        ChangeTextCounterMice(nbSouris);
+    }
+    public void ChangeTextCounterMice(int textCounter)
+    {
+        if (miceCounterText != null) miceCounterText.text = textCounter.ToString();
     }
 
     public void ChangeNbTrap(int nbTrap)
@@ -219,7 +224,7 @@ public class GameController : MonoSingleton<GameController>
                     sourisList.Add(go);
             }
             ScoreController.Instance.UpdateMaxMouseCount(sourisList.Count);
-            nombreSouris = sourisList.Count;
+            ChangeNbSouris(sourisList.Count);
             isChallenge = false;
         }
    
