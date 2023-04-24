@@ -24,7 +24,7 @@ public class GameController : MonoSingleton<GameController>
 
     public bool gameOn = false;
 
-    bool isChallenge = false;
+    public bool isChallenge = false;
 
     private TMPro.TMP_Text miceCounterText;
 
@@ -43,6 +43,7 @@ public class GameController : MonoSingleton<GameController>
             if (timer >= timeBeforeStart)
             {
                 hunt = true;
+                MusicManager.Instance.PlayHuntMusic();
                 if (sceneName != "DayOne")
                 {
                     LightController.Instance.LightOff();
@@ -50,6 +51,7 @@ public class GameController : MonoSingleton<GameController>
                 TrapSelectionMenu.Instance.DesactiveManager();
                 GameObject.FindGameObjectWithTag("MenuTrap").SetActive(false);
 				GameObject.FindGameObjectWithTag("MenuCatch")?.GetComponent<ShowTriesTimer>().OpenMenu();
+				SoundManager.Instance.ResumeMice();
 				SpawnSouris();
 			}
 			TrapSelectionMenu.Instance.DisplayTime(timeBeforeStart - timer);
@@ -63,6 +65,7 @@ public class GameController : MonoSingleton<GameController>
     public void GameOn()
     {
         gameOn = true;
+
     }
 
     public void LaunchRandom()
@@ -199,6 +202,8 @@ public class GameController : MonoSingleton<GameController>
         else if (scene.name == "Challenge")
         {
             isChallenge = true;
+            MusicManager.Instance.PlayTrapMusic();
+
         }
         else
         {
@@ -218,8 +223,10 @@ public class GameController : MonoSingleton<GameController>
                     timeBeforeStart = 120f;
                     break;
                 default:
-                    break;
+                    return;
             }
+            MusicManager.Instance.PlayTrapMusic();
+            SoundManager.Instance.MuteMice();
             foreach (Souris go in Resources.FindObjectsOfTypeAll<Souris>())
             {
                 if (go.gameObject.scene.name != null)

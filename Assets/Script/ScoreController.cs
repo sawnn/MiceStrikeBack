@@ -78,12 +78,21 @@ public class ScoreController : MonoSingleton<ScoreController>
 		GameObject[] temp = GameObject.FindGameObjectsWithTag("Miss" + errorCount);
 		if (temp.Length > 0) temp[0].GetComponent<TMPro.TMP_Text>().enabled = true;
 
-		SoundManager.Instance.PlaySound("failSound");
-        if(errorCount >= 3)
+
+        SoundManager.Instance.PlaySound("failSound");
+        if(errorCount >= 5)
         {
             int score = CalculateScore();
             Debug.Log("Score : " + score);
-            Leaderboard.Instance.SubmitScore(score);
+            if (GameController.Instance.isChallenge)
+            {
+                Leaderboard.Instance.SubmitScoreChallenge(score);
+            }
+            else
+            {
+                Leaderboard.Instance.SubmitScore(score);
+            }
+   
             score = 0;
             GameController.Instance.EndGame(false);
             Debug.Log("Game Over");
