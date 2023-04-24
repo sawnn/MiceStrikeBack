@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 
@@ -44,6 +45,7 @@ public class ScoreController : MonoSingleton<ScoreController>
     {
         newMouseCount++;
 
+        GameController.Instance.ChangeTextCounterMice(maxMouseCount-newMouseCount);
 
         if (newMouseCount >= maxMouseCount)
         {
@@ -72,6 +74,11 @@ public class ScoreController : MonoSingleton<ScoreController>
     {
         errorCount++;
         totalErrorCount++;
+
+		GameObject[] temp = GameObject.FindGameObjectsWithTag("Miss" + errorCount);
+		if (temp.Length > 0) temp[0].GetComponent<TMPro.TMP_Text>().enabled = true;
+
+
         SoundManager.Instance.PlaySound("failSound");
         if(errorCount >= 5)
         {

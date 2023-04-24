@@ -10,6 +10,15 @@ TagManager:
   - Panel
   - Plane
   - MenuTrap
+  - Timer
+  - MiceCounter
+  - TimerCatch
+  - Miss1
+  - Miss2
+  - Miss3
+  - Miss4
+  - Miss5
+  - MenuCatch
   layers:
   - Default
   - TransparentFX

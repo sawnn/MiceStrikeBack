@@ -10,22 +10,38 @@ public class TrapSelectionMenu : MonoSingleton<TrapSelectionMenu>
     public GameObject selectedTrap; 
     public InputActionReference leftClickAction, rightClickAction;
 
-    // Start is called before the first frame update
-    void Start()
+    private TMPro.TMP_Text timerText;
+    private void Start()
     {
-        
     }
+
+    public void Init()
+	{
+		GameObject[] temp = GameObject.FindGameObjectsWithTag("Timer");
+        if (temp.Length > 0)
+        {
+            timerText = temp[0].GetComponent<TMPro.TMP_Text>();
+            Debug.LogWarning(temp[0].name);
+        }
+        else
+        {
+            Debug.LogWarning("no");
+        }
+	}
 
     // Update is called once per frame
     void Update()
     {
         if (selectedTrap != null)
         {
-          
             Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             selectedTrap.transform.position = new Vector3(mousePos.x, 11, mousePos.z);
         }
-        
+    }
+
+    public void DisplayTime(float timeRemaining)
+    {
+        timerText.text = string.Format("{0:#0.0}", timeRemaining);
     }
 
     public void DesactiveManager()
@@ -40,7 +56,7 @@ public class TrapSelectionMenu : MonoSingleton<TrapSelectionMenu>
 
     public void SelectTrap(GameObject trap)
     {
-        selectedTrap = trap;
+       selectedTrap = trap;
     }
 
     private void OnEnable()

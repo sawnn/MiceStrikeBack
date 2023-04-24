@@ -26,16 +26,9 @@ public class GameController : MonoSingleton<GameController>
 
     public bool isChallenge = false;
 
-
-    
-
+    private TMPro.TMP_Text miceCounterText;
 
 
-
-    void Start()
-    {
-
-    }
 
     void Awake() {
         DontDestroyOnLoad(gameObject);
@@ -59,10 +52,12 @@ public class GameController : MonoSingleton<GameController>
                 }
                 TrapSelectionMenu.Instance.DesactiveManager();
                 GameObject.FindGameObjectWithTag("MenuTrap").SetActive(false);
-                SoundManager.Instance.ResumeMice();
-                SpawnSouris();
-            }
-        }
+				GameObject.FindGameObjectWithTag("MenuCatch")?.GetComponent<ShowTriesTimer>().OpenMenu();
+				SoundManager.Instance.ResumeMice();
+				SpawnSouris();
+			}
+			TrapSelectionMenu.Instance.DisplayTime(timeBeforeStart - timer);
+		}
         else {
             gameOn = false;
         }
@@ -84,6 +79,11 @@ public class GameController : MonoSingleton<GameController>
     public void ChangeNbSouris(int nbSouris)
     {
         nombreSouris = nbSouris;
+        ChangeTextCounterMice(nbSouris);
+    }
+    public void ChangeTextCounterMice(int textCounter)
+    {
+        if (miceCounterText != null) miceCounterText.text = textCounter.ToString();
     }
 
     public void ChangeNbTrap(int nbTrap)
@@ -95,7 +95,8 @@ public class GameController : MonoSingleton<GameController>
     public void SkipTime()
     {
         timer = timeBeforeStart;
-    }
+		GameObject.FindGameObjectWithTag("MenuCatch")?.GetComponent<ShowTriesTimer>().OpenMenu();
+	}
 
     public void SpawnSourisRandom()
     {
@@ -153,6 +154,9 @@ public class GameController : MonoSingleton<GameController>
         }
 
 
+    public GameObject win;
+	public GameObject loose;
+
         public void EndGame(bool isWin) 
         {
             sourisList.Clear();
@@ -173,16 +177,18 @@ public class GameController : MonoSingleton<GameController>
                         SceneController.Instance.LoadScene("DayFour");
                         break;
                     case "DayFour":
-                        SceneController.Instance.LoadScene("MenuPrincipal");
+                        Instantiate(win);
                         break;
+				    case "Challenge":
+					    Instantiate(win);
+					    break;
                     default:
                         break;
                 }
             }
             else
             {
-                SceneController.Instance.LoadScene("MenuPrincipal");
-                Debug.Log("Perdu !");
+                Instantiate(loose);
             }
         }
 
@@ -191,9 +197,11 @@ public class GameController : MonoSingleton<GameController>
     {
         Debug.Log("OnSceneLoaded: " + scene.name);
         Debug.Log(mode);
+		GameObject[] temp = GameObject.FindGameObjectsWithTag("MiceCounter");
+		if(temp.Length>0) miceCounterText = temp[0].GetComponent<TMPro.TMP_Text>();
+        TrapSelectionMenu.Instance.Init();
 
-
-        if (scene.name == "MenuPrincipal")
+		if (scene.name == "MenuPrincipal")
         {
             ScoreController.Instance.ReinitiateScore();
         }
@@ -231,8 +239,8 @@ public class GameController : MonoSingleton<GameController>
                     sourisList.Add(go);
             }
             ScoreController.Instance.UpdateMaxMouseCount(sourisList.Count);
-            nombreSouris = sourisList.Count;
-            isChallenge = false;
+			ChangeNbSouris(sourisList.Count);
+			isChallenge = false;
         }
    
     }
