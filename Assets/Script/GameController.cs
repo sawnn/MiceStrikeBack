@@ -15,7 +15,7 @@ public class GameController : MonoSingleton<GameController>
     public float timeBeforeStart = 60f;
     float timer = 0f;
 
-    public List<Souris> sourisList;
+    public List<Souris> sourisList = new List<Souris>();
 
     string sceneName;
 

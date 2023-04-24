@@ -38,7 +38,7 @@ public class ScoreController : MonoSingleton<ScoreController>
         {
             Debug.Log("Manche terminée !");
             //Debug.Log("Gagné !");
-            //Debug.Log("Score : " + GetScore());
+            Debug.Log("Score : " + CalculateScore());
             SoundManager.Instance.MuteMice();
             GameController.Instance.EndGame(true);
             
@@ -56,9 +56,13 @@ public class ScoreController : MonoSingleton<ScoreController>
         }
     }
 
-    public int GetScore()
+
+    public int CalculateScore()
     {
-        int score = mouseCount * scorePerMouse - (errorCount * scorePenaltyPerError) / Mathf.RoundToInt(timeElapsed);
-        return score;
+        int baseScore = mouseCount * 10;
+        int timePenalty = (int)(timeElapsed * 0.5f);
+        int failurePenalty = errorCount * 5;
+        int totalScore = Mathf.Max(0, baseScore - timePenalty - failurePenalty);
+        return totalScore;
     }
 }
