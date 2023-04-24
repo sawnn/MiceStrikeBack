@@ -45,6 +45,7 @@ public class LightController : MonoSingleton<LightController>
     public void ChallengeTime()
     {
         ChallengeUi.SetActive(false);
+        GameController.Instance.GameOn();
         GameController.Instance.LaunchRandom();
     }
 

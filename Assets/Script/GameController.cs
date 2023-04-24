@@ -71,7 +71,6 @@ public class GameController : MonoSingleton<GameController>
     public void LaunchRandom()
     {
         SpawnSourisRandom();
-        
         GameObject.FindGameObjectWithTag("MenuTrap").GetComponentInChildren<TrapMenu>().GenerateRandomTraps(numberTrap);
     }
 
@@ -203,7 +202,7 @@ public class GameController : MonoSingleton<GameController>
         {
             isChallenge = true;
             MusicManager.Instance.PlayTrapMusic();
-
+            SoundManager.Instance.MuteMice();
         }
         else
         {
