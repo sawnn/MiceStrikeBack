@@ -27,14 +27,11 @@ public class TrapMenu : MonoBehaviour
     private void Start()
     {
         traps = new List<GameObject>();
-        if (isRandom)
-        {
-            GenerateRandomTraps();
-        }
-        else
+        if (!isRandom)
         {
             GenerateTraps();
         }
+
 
     }
 
@@ -53,9 +50,9 @@ public class TrapMenu : MonoBehaviour
         }
     }
 
-    private void GenerateRandomTraps()
+    public void GenerateRandomTraps(int nbTrap)
     {
-        for (int i = 0; i < numTrapsToGenerate; i++)
+        for (int i = 0; i < nbTrap; i++)
         {
             GameObject newTrap = Instantiate(trapPrefab, gridLayout.transform);
 

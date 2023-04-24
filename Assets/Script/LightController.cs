@@ -8,6 +8,8 @@ public class LightController : MonoSingleton<LightController>
     public Canvas candleCanvas;
     public GameObject Light;
 
+    public GameObject ChallengeUi;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -30,5 +32,22 @@ public class LightController : MonoSingleton<LightController>
     {
         Light.SetActive(true);
         candleCanvas.gameObject.SetActive(true);
+    }
+
+
+    public void NightTime()
+    {
+        GameController.Instance.SkipTime();
+    }
+
+    public void ChallengeTime()
+    {
+        ChallengeUi.SetActive(false);
+        GameController.Instance.LaunchRandom();
+    }
+
+    public void QuitChallenge()
+    {
+        SceneController.Instance.LoadScene("MenuPrincipal");
     }
 }
