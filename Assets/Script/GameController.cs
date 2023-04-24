@@ -10,6 +10,9 @@ public class GameController : MonoSingleton<GameController>
 {
     public int nombreSouris = 10;
 
+    int numberTrap = 0;
+
+    public GameObject sourisPrefab;
     public bool hunt = false;
 
     public float timeBeforeStart = 60f;
@@ -20,6 +23,8 @@ public class GameController : MonoSingleton<GameController>
     string sceneName;
 
     public bool gameOn = false;
+
+    bool isChallenge = false;
 
     
 
@@ -33,7 +38,7 @@ public class GameController : MonoSingleton<GameController>
 
     void Awake() {
         DontDestroyOnLoad(gameObject);
-                Debug.Log("Awake");
+        Debug.Log("Awake");
         SceneManager.sceneLoaded += OnSceneLoaded;
     }
 
@@ -61,6 +66,40 @@ public class GameController : MonoSingleton<GameController>
 
     }
 
+    public void LaunchRandom()
+    {
+        SpawnSourisRandom();
+        
+        GameObject.FindGameObjectWithTag("MenuTrap").GetComponentInChildren<TrapMenu>().GenerateRandomTraps(numberTrap);
+    }
+
+    public void ChangeNbSouris(int nbSouris)
+    {
+        nombreSouris = nbSouris;
+    }
+
+    public void ChangeNbTrap(int nbTrap)
+    {
+        numberTrap = nbTrap;
+    }
+    
+
+    public void SkipTime()
+    {
+        timer = timeBeforeStart;
+    }
+
+    public void SpawnSourisRandom()
+    {
+        for (int i = 0; i < nombreSouris; i++)
+        {
+            Vector3 randomPosition = RandomNavMeshLocation();
+            GameObject souris = Instantiate(sourisPrefab, randomPosition, Quaternion.Euler(90, 0, 0));
+            sourisList.Add(souris.GetComponent<Souris>());
+            souris.SetActive(false);
+        }
+        ScoreController.Instance.UpdateMaxMouseCount(nombreSouris);
+    }
     public void SpawnSouris()
     {
         foreach (Souris souris in sourisList)
@@ -144,29 +183,40 @@ public class GameController : MonoSingleton<GameController>
     {
         Debug.Log("OnSceneLoaded: " + scene.name);
         Debug.Log(mode);
-        sceneName = scene.name;
-        switch (scene.name)
+
+        if (scene.name == "Challenge")
         {
-            case "DayOne":
-                timeBeforeStart = 0f;
-                break;
-            case "DayTwo":
-                timeBeforeStart = 60f;
-                break;
-            case "DayThree":
-                timeBeforeStart = 60f;
-                break;
-            case "DayFour":
-                timeBeforeStart = 60f;
-                break;
-            default:
-                break;
+            isChallenge = true;
         }
-        foreach (Souris go in Resources.FindObjectsOfTypeAll<Souris>())
+        else
         {
-            if (go.gameObject.scene.name != null)
-                sourisList.Add(go);
+            sceneName = scene.name;
+            switch (scene.name)
+            {
+                case "DayOne":
+                    timeBeforeStart = 0f;
+                    break;
+                case "DayTwo":
+                    timeBeforeStart = 60f;
+                    break;
+                case "DayThree":
+                    timeBeforeStart = 60f;
+                    break;
+                case "DayFour":
+                    timeBeforeStart = 120f;
+                    break;
+                default:
+                    break;
+            }
+            foreach (Souris go in Resources.FindObjectsOfTypeAll<Souris>())
+            {
+                if (go.gameObject.scene.name != null)
+                    sourisList.Add(go);
+            }
+            ScoreController.Instance.UpdateMaxMouseCount(sourisList.Count);
+            nombreSouris = sourisList.Count;
+            isChallenge = false;
         }
-        nombreSouris = sourisList.Count;
+   
     }
 }
